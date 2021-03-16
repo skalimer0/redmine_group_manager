@@ -31,7 +31,7 @@ class Gmanager < ActiveRecord::Base
   
   #return user custom field names or an empty array if none are available
   def self.get_user_cf_keys()
-    keys = CustomField.where(:type => 'UserCustomField', :visible => true)
+    keys = CustomField.where(:type => 'UserCustomField', :visible => true).order(:position)
     res = []
     if !keys.blank?
       i = 0
@@ -45,16 +45,21 @@ class Gmanager < ActiveRecord::Base
   
   #return user custom field values or an empty array if none are available
   def self.get_user_cf_values(id)
-    keys = CustomField.where(:type => 'UserCustomField', :visible => true)
+    keys = CustomField.where(:type => 'UserCustomField', :visible => true).order(:position)
     values = User.find(id).custom_values
 
     res = []
     if !keys.blank?
       i = 0
       keys.each do |c|
-        res[i] = values[i] ? values[i][:value].to_s : "-"
-        i += 1
-      end	
+        res[i] = '-'
+        values.each do |v|
+          if c['id'] == v[:custom_field_id]
+            res[i] = v[:value].to_s
+            i += 1
+          end
+        end
+      end
     end
     res
     #res = { }
