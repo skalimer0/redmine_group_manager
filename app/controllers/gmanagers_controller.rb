@@ -42,7 +42,7 @@ class GmanagersController < ApplicationController
   end
 
   def update
-    @project = params['project_id']
+    @project = Project.find(params[:project_id])
     @group = Group.find(params["id"])
     temp = params["edit"]
     
