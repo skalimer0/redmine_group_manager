@@ -31,7 +31,7 @@ class Gmanager < ActiveRecord::Base
   
   #return user custom field names or an empty array if none are available
   def self.get_user_cf_keys()
-    keys = CustomField.where(:type => 'UserCustomField')
+    keys = CustomField.where(:type => 'UserCustomField', :visible => true)
     res = []
     if !keys.blank?
       i = 0
@@ -45,7 +45,7 @@ class Gmanager < ActiveRecord::Base
   
   #return user custom field values or an empty array if none are available
   def self.get_user_cf_values(id)
-    keys = CustomField.where(:type => 'UserCustomField')
+    keys = CustomField.where(:type => 'UserCustomField', :visible => true)
     values = User.find(id).custom_values
 
     res = []
