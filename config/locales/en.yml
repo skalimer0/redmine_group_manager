@@ -18,4 +18,8 @@ en:
   permission_delete_admin_groups: Delete admin's groups
   permission_change_other_groups: Change other user's groups
   permission_delete_other_groups: Delete other user's groups
-
+  error_group_same_name: "Group with the same name already exists"
+  error_no_rights_to_manage_this_group: "You've got no rights for managing this group"
+  error_must_choose_user: "You must choose users to add"
+  error_not_enough_rights_to_delete: "You have not enough rights to delete this group"
+  
